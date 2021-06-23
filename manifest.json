@@ -3,6 +3,7 @@
   "name": "Generate CPR",
   "version": "1.0",
   "description": "",
+  "homepage_url": "https://github.com/Adamduehansen/cpr-generator-browser-plugin#readme",
   "icons": {
     "48": "icons/icon-48x48.png"
   },
