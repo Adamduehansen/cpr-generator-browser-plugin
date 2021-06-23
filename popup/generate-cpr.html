@@ -7,11 +7,21 @@
   <body>
     <form id="generate-cpr-form">
       <div class="container">
-        <input id="day-input" type="number" placeholder="day (dd)" autofocus />
-        <input id="month-input" type="number" placeholder="month (mm)" />
-        <input id="year-input" type="number" placeholder="year (yyyy)" />
+        <div>
+          <label for="day-input">Day</label>
+          <input id="day-input" type="number" value="00" autofocus />
+        </div>
+        <div>
+          <label for="month-input">Month</label>
+          <input id="month-input" type="number" value="00" />
+        </div>
+        <div>
+          <label for="year-input">Year</label>
+          <input id="year-input" type="number" value="0000" />
+        </div>
         <button>Generate</button>
       </div>
+      <ul id="cpr-list"></ul>
     </form>
     <script src="generate-cpr.js"></script>
   </body>
