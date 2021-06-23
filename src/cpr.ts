@@ -20,6 +20,23 @@ export const validateCpr = function (cpr: string): boolean {
   return result % 11 === 0;
 };
 
+const resetNumber = function (number: number) {
+  if (number > 9) {
+    return 0;
+  } else {
+    return number;
+  }
+};
+
+const isMaxSerialNummer = function (serialNumber: number[]) {
+  return (
+    serialNumber[3] === 9 &&
+    serialNumber[2] === 9 &&
+    serialNumber[1] === 9 &&
+    serialNumber[0] === 9
+  );
+};
+
 export const generateCprs = function ({
   day,
   month,
@@ -27,61 +44,45 @@ export const generateCprs = function ({
 }: CprDate): Promise<string[]> {
   const validCprs: string[] = [];
   return new Promise<string[]>((resolve) => {
-    const digits = [0, 0, 0, 0];
+    const serialNumbers = [0, 0, 0, 0];
     do {
-      if (digits[3] <= 9) {
-        digits[3] += 1;
+      if (serialNumbers[3] <= 9) {
+        serialNumbers[3] += 1;
       } else {
-        digits[3] = 0;
+        serialNumbers[3] = 0;
       }
 
-      if (digits[3] > 9 && digits[2] <= 9) {
-        digits[2] += 1;
+      if (serialNumbers[3] > 9 && serialNumbers[2] <= 9) {
+        serialNumbers[2] += 1;
       }
 
-      if (digits[2] > 9 && digits[1] <= 9) {
-        digits[1] += 1;
+      if (serialNumbers[2] > 9 && serialNumbers[1] <= 9) {
+        serialNumbers[1] += 1;
       }
 
-      if (digits[1] > 9 && digits[0] <= 9) {
-        digits[0] += 1;
+      if (serialNumbers[1] > 9 && serialNumbers[0] <= 9) {
+        serialNumbers[0] += 1;
       }
 
-      if (digits[3] > 9) {
-        digits[3] = 0;
-      }
+      serialNumbers[3] = resetNumber(serialNumbers[3]);
+      serialNumbers[2] = resetNumber(serialNumbers[2]);
+      serialNumbers[1] = resetNumber(serialNumbers[1]);
+      serialNumbers[0] = resetNumber(serialNumbers[0]);
 
-      if (digits[2] > 9) {
-        digits[2] = 0;
-      }
-
-      if (digits[1] > 9) {
-        digits[1] = 0;
-      }
-
-      if (digits[0] > 9) {
-        digits[0] = 0;
-      }
-
-      const cpr = day + month + year + digits.join('');
+      const cpr = day + month + year + serialNumbers.join('');
       const isValid = validateCpr(cpr);
       if (isValid) {
         validCprs.push(cpr);
       }
 
-      if (
-        digits[3] === 9 &&
-        digits[2] === 9 &&
-        digits[1] === 9 &&
-        digits[0] === 9
-      ) {
+      if (isMaxSerialNummer(serialNumbers)) {
         break;
       }
     } while (
-      digits[3] <= 9 &&
-      digits[2] <= 9 &&
-      digits[1] <= 9 &&
-      digits[0] <= 9
+      serialNumbers[3] <= 9 &&
+      serialNumbers[2] <= 9 &&
+      serialNumbers[1] <= 9 &&
+      serialNumbers[0] <= 9
     );
 
     resolve(validCprs);
