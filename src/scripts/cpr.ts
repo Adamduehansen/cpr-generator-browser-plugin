@@ -37,11 +37,37 @@ const isMaxSerialNummer = function (serialNumber: number[]) {
   );
 };
 
-export const generateCprs = function ({
-  day,
-  month,
-  year,
-}: CprDate): Promise<string[]> {
+const sanitizeYear = function (year: string): string {
+  if (year.length === 4) {
+    year = year.substr(2);
+  }
+  return year;
+};
+
+const sanitizeMonth = function (month: string): string {
+  if (month.length === 1) {
+    month = `0${month}`;
+  }
+  return month;
+};
+
+const sanitizeDay = function (day: string): string {
+  if (day.length === 1) {
+    day = `0${day}`;
+  }
+  return day;
+};
+
+const sanitizeInputs = function ({ day, month, year }: CprDate): CprDate {
+  return {
+    day: sanitizeDay(day),
+    month: sanitizeMonth(month),
+    year: sanitizeYear(year),
+  };
+};
+
+export const generateCprs = function (inputs: CprDate): Promise<string[]> {
+  const { day, month, year } = sanitizeInputs(inputs);
   const validCprs: string[] = [];
   return new Promise<string[]>((resolve) => {
     const serialNumbers = [0, 0, 0, 0];

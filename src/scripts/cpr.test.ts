@@ -28,8 +28,10 @@ describe('cpr', () => {
 
   describe('generateCpr', () => {
     test.each([
-      // ['1', '6', '1900'],
       ['01', '06', '00'],
+      ['01', '06', '1900'],
+      ['01', '6', '00'],
+      ['1', '06', '00'],
     ])(
       'should generate CPR for day, month and year',
       async (day, month, year) => {
