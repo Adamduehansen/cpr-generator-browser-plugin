@@ -1,14 +1,17 @@
-type InputValues = {
-  day: string;
-  month: string;
-  year: string;
-};
+import { InputValues } from './InputValues';
 
 const setInitialStorage = function () {
   const currentDate = new Date(Date.now());
+  const day = new Intl.DateTimeFormat('en', {
+    day: '2-digit',
+  }).format(currentDate);
+  const month = new Intl.DateTimeFormat('en', {
+    month: '2-digit',
+  }).format(currentDate);
+
   const inputValues: InputValues = {
-    day: currentDate.getDay().toString(),
-    month: currentDate.getMonth().toString(),
+    day,
+    month,
     year: currentDate.getFullYear().toString(),
   };
   browser.storage.local.set({ inputValues });
