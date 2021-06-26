@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "scripts": {
     "test": "jest --watchAll",
+    "build": "webpack",
     "start": "webpack --watch"
   },
   "repository": {
@@ -15,6 +16,7 @@
   },
   "homepage": "https://github.com/Adamduehansen/cpr-generator-browser-plugin#readme",
   "devDependencies": {
+    "@types/firefox-webext-browser": "^82.0.0",
     "@types/jest": "^26.0.23",
     "jest": "^27.0.4",
     "ts-jest": "^27.0.3",

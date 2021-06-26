@@ -1,2 +1,5 @@
+# Npm
 node_modules
-popup/generate-cpr.js
+
+# Build
+plugin/**/*.js

@@ -8,12 +8,17 @@
     "48": "icons/icon-48x48.png"
   },
   "permissions": [
-    "activeTab"
+    "activeTab",
+    "storage"
   ],
   "browser_action": {
     "default_icon": "icons/icon-48x48.png",
     "default_title": "Generate CPR",
     "default_popup": "popup/generate-cpr.html"
   },
-  "web_accessible_resources": []
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  }
 }

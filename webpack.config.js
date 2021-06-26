@@ -2,7 +2,15 @@ const path = require('path');
 
 module.exports = {
   mode: 'production',
-  entry: path.resolve(__dirname, 'src', 'index.ts'),
+  entry: {
+    'popup/generate-cpr': path.resolve(
+      __dirname,
+      'src',
+      'popup',
+      'generate-cpr.ts'
+    ),
+    background: path.resolve(__dirname, 'src', 'background.ts'),
+  },
   module: {
     rules: [
       {
@@ -16,7 +24,7 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    path: path.resolve(__dirname, 'popup'),
-    filename: 'generate-cpr.js',
+    path: path.resolve(__dirname, 'plugin'),
+    filename: '[name].js',
   },
 };
