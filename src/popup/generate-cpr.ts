@@ -1,10 +1,5 @@
 import { CprDate, generateCprs } from '../scripts/cpr';
-
-type InputValues = {
-  day: string;
-  month: string;
-  year: string;
-};
+import { InputValues } from '../InputValues';
 
 const cprList = document.querySelector('#cpr-list')!;
 const dayInput = document.querySelector('#day-input') as HTMLInputElement;
@@ -35,6 +30,13 @@ const onSubmitHandler = function (event: Event) {
     });
 };
 
+const setInputValuesFromStore = function (storage: any) {
+  const inputValues = storage.inputValues as InputValues;
+  dayInput.value = inputValues.day;
+  monthInput.value = inputValues.month;
+  yearInput.value = inputValues.year;
+};
+
 const storeInputValue = function (event: Event) {
   // const input = event.target as HTMLInputElement;
   // browser.storage.local
@@ -50,8 +52,5 @@ const storeInputValue = function (event: Event) {
   dayInput.addEventListener('keypress', storeInputValue);
   monthInput.addEventListener('keypress', storeInputValue);
   yearInput.addEventListener('keypress', storeInputValue);
-
-  browser.storage.local.get().then((storage) => {
-    console.log(storage);
-  });
+  browser.storage.local.get('inputValues').then(setInputValuesFromStore);
 })();
