@@ -19,18 +19,22 @@ const getInputValues = function () {
   });
 };
 
+const renderCprs = function (cprs: string[]) {
+  return new Promise<string[]>((resolve) => {
+    cprList.innerHTML = '';
+    cprs.forEach((cpr) => {
+      const cprListElement = document.createElement('li');
+      cprListElement.textContent = cpr;
+      cprList.append(cprListElement);
+    });
+    cprList.style.display = 'block';
+    resolve(cprs);
+  });
+};
+
 const onSubmitHandler = function (event: Event) {
   event.preventDefault();
-  getInputValues()
-    .then(generateCprs)
-    .then((cprs) => {
-      cprs.forEach((cpr) => {
-        const cprListElement = document.createElement('li');
-        cprListElement.textContent = cpr;
-        cprList.append(cprListElement);
-      });
-      cprList.style.display = 'block';
-    });
+  getInputValues().then(generateCprs).then(renderCprs);
 };
 
 const setInputValuesFromStore = function (storage: any) {
