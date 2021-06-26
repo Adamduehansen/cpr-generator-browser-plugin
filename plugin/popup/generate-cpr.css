@@ -1,4 +1,35 @@
 .container {
   display: flex;
   flex-direction: column;
+  width: 120px;
+  margin: 5px;
+  margin-bottom: 10px;
+}
+
+.input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input input {
+  width: 50px;
+}
+
+button {
+  width: 100%;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  width: 100%;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+.cpr-container {
+  height: 200px;
+  overflow-y: scroll;
 }

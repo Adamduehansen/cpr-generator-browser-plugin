@@ -3,7 +3,7 @@ import { InputValues } from '../InputValues';
 
 type InputField = keyof InputValues | undefined;
 
-const cprList = document.querySelector('#cpr-list')!;
+const cprList = document.querySelector('#cpr-list')! as HTMLUListElement;
 const dayInput = document.querySelector('#day-input') as HTMLInputElement;
 const monthInput = document.querySelector('#month-input')! as HTMLInputElement;
 const yearInput = document.querySelector('#year-input')! as HTMLInputElement;
@@ -29,6 +29,7 @@ const onSubmitHandler = function (event: Event) {
         cprListElement.textContent = cpr;
         cprList.append(cprListElement);
       });
+      cprList.style.display = 'block';
     });
 };
 

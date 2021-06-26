@@ -7,22 +7,34 @@
   <body>
     <form id="generate-cpr-form">
       <div class="container">
-        <div>
-          <label for="day-input">Day</label>
-          <input id="day-input" type="number" value="00" autofocus />
+        <div class="input">
+          <div>
+            <label for="day-input">Day</label>
+          </div>
+          <div>
+            <input id="day-input" type="number" value="00" autofocus />
+          </div>
         </div>
-        <div>
-          <label for="month-input">Month</label>
-          <input id="month-input" type="number" value="00" />
+        <div class="input">
+          <div>
+            <label for="month-input">Month</label>
+          </div>
+          <div>
+            <input id="month-input" type="number" value="00" />
+          </div>
         </div>
-        <div>
-          <label for="year-input">Year</label>
-          <input id="year-input" type="number" value="0000" />
+        <div class="input">
+          <div>
+            <label for="year-input">Year</label>
+          </div>
+          <div>
+            <input id="year-input" type="number" value="0000" />
+          </div>
         </div>
-        <button>Generate</button>
       </div>
-      <ul id="cpr-list"></ul>
+      <button>Generate</button>
     </form>
+    <ul id="cpr-list" class="cpr-container" style="display: none"></ul>
     <script src="generate-cpr.js"></script>
   </body>
 </html>
