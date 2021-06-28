@@ -1,3 +1,4 @@
+import { browser } from 'webextension-polyfill-ts';
 import { InputValues } from './InputValues';
 
 const setInitialStorage = function () {

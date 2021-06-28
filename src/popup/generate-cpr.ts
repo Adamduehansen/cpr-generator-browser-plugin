@@ -1,3 +1,4 @@
+import { browser } from 'webextension-polyfill-ts';
 import { CprDate, generateCprs } from '../scripts/cpr';
 import { InputValues } from '../InputValues';
 
